@@ -1,0 +1,55 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LUNAR-TELEMETRY-STRESS.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT TELEMETRY-FILE
+               ASSIGN TO "lunar_telemetry.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD TELEMETRY-FILE.
+       01 TELEMETRY-RECORD PIC X(80).
+
+       PROCEDURE DIVISION.
+
+           OPEN OUTPUT TELEMETRY-FILE.
+
+                      MOVE "ROVER=GILDRA-LR01"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "BATTERY=018"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "MOTOR_TEMP=083"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "WHEEL_SLIP=047"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "TERRAIN_SLOPE=032.5"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "SIGNAL=021"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+           MOVE "SPEED=0.05"
+               TO TELEMETRY-RECORD
+           WRITE TELEMETRY-RECORD.
+
+          
+
+           CLOSE TELEMETRY-FILE.
+
+           DISPLAY "LUNAR TELEMETRY GENERATED".
+           DISPLAY "ROVER: GILDRA-LR01".
+
+           STOP RUN.
